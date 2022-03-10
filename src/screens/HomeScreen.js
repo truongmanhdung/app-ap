@@ -8,6 +8,7 @@ import {
   Dimensions,
   ScrollView,
 } from 'react-native';
+import ConfigHeader from '../container/configHeader'
 import {useNavigation} from '@react-navigation/native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -56,6 +57,8 @@ function HomeScreen(props) {
     // }, 3000);
   }, []);
   return (
+    <>
+    <ConfigHeader />
     <ScrollView>
       <View style={styles.container}>
         {!loading && (
@@ -83,6 +86,8 @@ function HomeScreen(props) {
         )}
       </View>
     </ScrollView>
+    </>
+    
   );
 }
 
