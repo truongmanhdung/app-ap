@@ -48,12 +48,12 @@ function HomeScreen(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-    setTimeout(() => {
-      navigation.navigate('Login')
-    }, 3000);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 1000);
+    // setTimeout(() => {
+    //   navigation.navigate('Login')
+    // }, 3000);
   }, []);
   return (
     <ScrollView>
