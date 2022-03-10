@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';
 import SettingScreen from '../screens/SettingScreen';
 import SubjectScreen from '../screens/SubjectScreen';
+import ConfigHeader from './configHeader';
 const Tab = createMaterialBottomTabNavigator();
 
 
@@ -24,11 +25,10 @@ function NavBottom(props) {
         component={HomeScreen}
         barStyle={{backgroundColor: 'white', borderColor: 'red', borderWidth: 2}}
         options={{
-          tabBarShowLabel: false,
           tabBarIcon: ({ color }) => (
             <IconView component="Entypo" name='home' size={25} color={color} />
           ),
-
+          headerTitle: (props) => <ConfigHeader {...props} />
         }}
       />
       <Tab.Screen
@@ -38,6 +38,7 @@ function NavBottom(props) {
           tabBarIcon: ({ color }) => (
             <IconView component="FontAwesome" name='calendar' size={25} color={color} />
           ),
+          headerTitle: props => <ConfigHeader {...props} />
         }}
       />
       
