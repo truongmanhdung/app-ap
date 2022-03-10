@@ -9,13 +9,13 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 import createSagaMiddleware from "redux-saga";
 import rootReducer from "./rootReducer";
 import rootSaga from "./saga";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const persistConfig = {
   key: "root",
-  storage,
+  storage: AsyncStorage,
   blacklist: ["product", "counter"],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
