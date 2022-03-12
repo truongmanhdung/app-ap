@@ -294,7 +294,7 @@ function ScheduleScreen() {
   };
   const renderData = () => {
     const Item = ({title}) => (
-      <TouchableOpacity onPress={navigate} style={styles.item}>
+      <TouchableOpacity onPress={navigate} activeOpacity={0.8} style={styles.item}>
         <View>
           <Text style={styles.title}>{title.title}</Text>
           <Text style={styles.text}>

@@ -16,9 +16,11 @@ import persistor, { store } from './src/app/store';
 import NavBottom from './src/container/navBottom';
 import HomeScreen from './src/screens/HomeScreen';
 
-import LoginScreen from './src/screens/LoginScreen';
+
 import ViewContent from './src/screens/ScheduleScreen/ViewContent';
 import Notification from './src/screens/Notification';
+import FirstLoginScreen from './src/screens/authScreen/firstLoginScreen';
+import LoginScreen from './src/screens/authScreen/loginScreen';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -44,6 +46,11 @@ const App = () => {
                 options={{ headerShown: false }}
                 name="Login"
                 component={LoginScreen}
+              />
+              <Stack.Screen
+                options={{ headerShown: false }}
+                name="FirstLogin"
+                component={FirstLoginScreen}
               />
               <Stack.Screen
                 options={{ headerShown: false }}
