@@ -1,68 +1,68 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
+const styles = StyleSheet.create({
+    header: {
+        height: 100,
+        backgroundColor: 'red'
+    },
+    content: {
+        backgroundColor: '#fff',
+        margin: 10,
+        height: '100%',
+        padding: 12
+    },
+    textBold: {
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    title: {
+        fontSize: 14,
+        width: "60%"
+    },
+    text: {
+        color: '#888',
+        fontSize: 12
+    },
+    textContent: {
+        fontSize: 14
+    }
+    ,
+    two: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    three: {
+        paddingTop: 43
+    },
+    ford: {
+        flex: 2,
+        justifyContent: 'center',
+        alignItems: 'center'
 
+    },
+    bottom: {
+        paddingBottom: 70
+    },
+    icon:{
+        background: 'none'
+    },
+    textTitle: {
+        color: 'white',
+        fontWeight: 'bold',
+        paddingLeft: 15,
+        paddingRight: 100
+    },
+    titleHeader: {
+        flexDirection: 'row',
+        paddingLeft: 15,
+        paddingTop: 60,
+    }
+})
 function ViewContent() {
     const navigation = useNavigation()
-    const styles = StyleSheet.create({
-        header: {
-            height: 100,
-            backgroundColor: 'red'
-        },
-        content: {
-            backgroundColor: '#fff',
-            margin: 10,
-            height: '100%',
-            padding: 12
-        },
-        textBold: {
-            fontWeight: 'bold',
-            fontSize: 16
-        },
-        title: {
-            fontSize: 14,
-            width: "60%"
-        },
-        text: {
-            color: '#888',
-            fontSize: 12
-        },
-        textContent: {
-            fontSize: 14
-        }
-        ,
-        two: {
-            flex: 1,
-            justifyContent: 'center',
-        },
-        three: {
-            paddingTop: 43
-        },
-        ford: {
-            flex: 2,
-            justifyContent: 'center',
-            alignItems: 'center'
-
-        },
-        bottom: {
-            paddingBottom: 70
-        },
-        icon:{
-            background: 'none'
-        },
-        textTitle: {
-            color: 'white',
-            fontWeight: 'bold',
-            paddingLeft: 15,
-            paddingRight: 100
-        },
-        titleHeader: {
-            flexDirection: 'row',
-            paddingLeft: 15,
-            paddingTop: 60,
-        }
-    })
+    
     const handleBack = () => (navigation.goBack())
     return (
         <ScrollView>
@@ -128,4 +128,6 @@ function ViewContent() {
     )
 }
 ViewContent.propTypes = {}
-export default ViewContent
+
+
+export default memo(ViewContent)
