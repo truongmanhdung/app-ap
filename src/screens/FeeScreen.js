@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import {Button} from 'react-native-elements';
+import TopBar from '../container/header/TopBar';
 const data = [
   {
     name: 'Nguyễn Đức Hải',
@@ -14,69 +22,58 @@ const data = [
 ];
 function FeeScreen(props) {
   return (
-    <ScrollView style={styles.scroll}>
-      <View style={styles.container}>
-        <>
-          <Text style={styles.textTitle}>Thông tin sinh viên</Text>
-        </>
-        {data.map((item, i) => (
-          <View style={styles.textBody}>
-            <Text style={styles.textContent}>Họ và tên: {item.name}</Text>
-            <Text style={styles.textContent}>
-              Mã sinh viên: {item.studentcode}
+    <>
+      <TopBar />
+      <ScrollView style={styles.scroll}>
+        <View style={styles.container}>
+          <>
+            <Text style={styles.textTitle}>Thông tin sinh viên</Text>
+          </>
+          {data.map((item, i) => (
+            <View style={styles.textBody}>
+              <Text style={styles.textContent}>Họ và tên: {item.name}</Text>
+              <Text style={styles.textContent}>
+                Mã sinh viên: {item.studentcode}
+              </Text>
+              <Text style={styles.textContent}>Kỳ học: {item.semester}</Text>
+              <Text style={styles.textContent}>Trạng thái: {item.status}</Text>
+              <Text style={styles.textContent}>Tổng tiền: {item.total}</Text>
+              <Text style={styles.textContent}>
+                Thời gian gia hạn:{' '}
+                <Text style={styles.textContent2}>{item.time}</Text>
+              </Text>
+            </View>
+          ))}
+        </View>
+        <View style={styles.container}>
+          <>
+            <Text style={styles.textTitle}>
+              Lí do gia hạn <Text style={styles.Icon}>*</Text>
             </Text>
-            <Text style={styles.textContent}>Kỳ học: {item.semester}</Text>
-            <Text style={styles.textContent}>Trạng thái: {item.status}</Text>
-            <Text style={styles.textContent}>Tổng tiền: {item.total}</Text>
-            <Text style={styles.textContent}>
-              Thời gian gia hạn:{' '}
-              <Text style={styles.textContent2}>{item.time}</Text>
-            </Text>
-          </View>
-        ))}
-      </View>
-      <View style={styles.container}>
-        <>
-          <Text style={styles.textTitle}>
-            Lí do gia hạn <Text style={styles.Icon}>*</Text>
-          </Text>
-          <TextInput
-            placeholder="Nhập lí do gia hạn học phí (Bắt buộc)"
-            required={true}
-            multiline={true}
-            numberOfLines={10}
-            style={{
-              height: 150,
-              textAlignVertical: 'top',
-              borderTopWidth: 1,
-              borderColor: 'rgba(158, 150, 150, .5)',
-            }}
-          />
-        </>
-      </View>
-      <View style={styles.container}>
-        <>
-          <Text style={styles.textTitle}>Tệp đính kèm</Text>
-        </>
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Gia hạn học phí"
-          buttonStyle={{
-            borderRadius: 50,
-            borderColor: '#f38748',
-            padding: 10,
-            borderWidth: 2,
-          }}
-          type="outline"
-          titleStyle={{color: '#f38748'}}
-          containerStyle={{
-            borderRadius: 24,
-            borderColor: '#f38748',
-          }}
-        />
-      </View>
-    </ScrollView>
+            <TextInput
+              placeholder="Nhập lí do gia hạn học phí (Bắt buộc)"
+              required={true}
+              multiline={true}
+              numberOfLines={10}
+              style={{
+                height: 150,
+                textAlignVertical: 'top',
+                borderTopWidth: 1,
+                borderColor: 'rgba(158, 150, 150, .5)',
+              }}
+            />
+          </>
+        </View>
+        <View style={styles.container}>
+          <>
+            <Text style={styles.textTitle}>Tệp đính kèm</Text>
+          </>
+        </View>
+        <TouchableOpacity style={styles.button} activeOpacity={0.5}>
+          <Text style={styles.textBtn}>Gia hạn học phí</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </>
   );
 }
 const styles = StyleSheet.create({
@@ -85,7 +82,9 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#ffffff',
-    margin: 10,
+    marginTop: 10,
+    marginLeft: 15,
+    marginRight: 15,
     paddingTop: 5,
     paddingLeft: 15,
     shadowColor: '#000',
@@ -125,6 +124,15 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 10,
+    borderColor: 'red',
+    borderWidth: 2,
+    padding: 10,
+    borderRadius: 24,
+  },
+  textBtn: {
+    textAlign: 'center',
+    fontWeight: '500',
+    color: 'black',
   },
 });
 

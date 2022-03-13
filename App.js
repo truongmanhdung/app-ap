@@ -20,6 +20,7 @@ import LoginScreen from './src/screens/authScreen/loginScreen';
 import StartApp from './src/screens/homeScreen/StartApp';
 import Notification from './src/screens/Notification';
 import ViewContent from './src/screens/ScheduleScreen/ViewContent';
+import RewardScreen from './src/screens/RewardScreen';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -51,12 +52,18 @@ const App = () => {
                 name="Login"
                 component={LoginScreen}
               />
-               <Stack.Screen
+              <Stack.Screen
                 options={{headerShown: false}}
                 name="Fee"
                 component={FeeScreen}
               />
-                <Stack.Screen
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="Reward"
+                component={RewardScreen}
+              />
+
+              <Stack.Screen
                 options={{headerShown: false}}
                 name="Sms"
                 component={SmsScreen}
@@ -77,7 +84,6 @@ const App = () => {
                 name="notification"
                 component={Notification}
               />
-              
             </Stack.Navigator>
           </NavigationContainer>
         </View>

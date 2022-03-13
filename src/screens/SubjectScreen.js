@@ -22,6 +22,7 @@ import {
   colors,
 } from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
+import ConfigHeader from '../container/header/configHeader';
 const data = [
   {
     name: '* Gia hạn học phí',
@@ -48,7 +49,7 @@ const data2 = [
   {
     name: 'Khen thưởng / Kỉ luật',
     icon: 'grade',
-    nameScreen: 'Sms',
+    nameScreen: 'Reward',
   },
   {
     name: 'SMS',
@@ -66,7 +67,9 @@ function SubjectScreen(props) {
     navigation.navigate(data.nameScreen);
   };
   return (
-    <ScrollView style={styles.scroll}>
+    <>
+      <ConfigHeader />
+      <ScrollView style={styles.scroll}>
       <View style={styles.container}>
         <View style={styles.texttitle}>
           <Text style={styles.texttitle}>Thông tin thêm</Text>
@@ -117,6 +120,7 @@ function SubjectScreen(props) {
         ))}
       </View>
     </ScrollView>
+    </>
   );
 }
 const styles = StyleSheet.create({
