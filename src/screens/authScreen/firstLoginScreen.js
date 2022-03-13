@@ -15,8 +15,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../features/auth/authSlide';
 GoogleSignin.configure({
-  webClientId:
-    '509124465129-jaeu547qhg4mrbjfaoadrajrcthukhj0.apps.googleusercontent.com',
+  webClientId: process.env.webClientId,
 });
 const WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = WIDTH * 0.88;

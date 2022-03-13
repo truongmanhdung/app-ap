@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity, SafeAreaView} from 'react-native';
 import IconView from '../../common/IconView';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import routers from './routerParams';
@@ -18,8 +18,11 @@ const styles = StyleSheet.create({
   textHeader: {
     fontSize: 20,
     color: 'white',
-    marginLeft: 10
+    paddingRight: 50
   },
+  safe: {
+      backgroundColor: '#F95B00'
+  }
 });
 function TopBar(props) {
   const navigation = useNavigation();
@@ -33,6 +36,7 @@ function TopBar(props) {
     }
   })
   return (
+    <SafeAreaView style={styles.safe} >
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.iconBack}
@@ -46,6 +50,7 @@ function TopBar(props) {
       </TouchableOpacity>
       {<Text style={styles.textHeader}>{headerName}</Text>}
     </View>
+    </SafeAreaView>
   );
 }
 

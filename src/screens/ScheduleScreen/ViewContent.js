@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import TopBar from '../../container/header/TopBar';
@@ -62,8 +62,6 @@ const styles = StyleSheet.create({
 });
 function ViewContent(props) {
   const navigation = useNavigation();
-
-  const handleBack = () => navigation.goBack();
   const {route} = props;
   const activeRoute = useRoute();
   let headerTitle = activeRoute.name;

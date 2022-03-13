@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {
-  ScrollView,
   View,
   StyleSheet,
   SafeAreaView,
@@ -12,7 +11,6 @@ import {Text} from 'react-native-elements';
 import Tabview from '../../components/TabView/Tabview';
 import {FlatList} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import ConfigHeader from '../../container/header/configHeader';
 const newDate = new Date();
 const fakeData = [
@@ -298,11 +296,7 @@ function ScheduleScreen() {
   const renderData = () => {
     const Item = ({title}) => (
       <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('viewContent', {
-            headerTitle: 'THÔNG BÁO NHẬN BẰNG TỐT NGHIỆP ĐỢT 3.2020',
-          })
-        }
+        onPress={() => navigate() }
         activeOpacity={0.8}
         style={styles.item}>
         <View>
@@ -333,9 +327,6 @@ function ScheduleScreen() {
       </SafeAreaView>
     );
   };
-
-  const handleGo = () => navigation.navigate('notification');
-
   return (
     <>
       <ConfigHeader />
