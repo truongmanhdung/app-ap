@@ -1,11 +1,12 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import * as React from 'react';
 import IconView from '../common/IconView';
-import HomeScreen from '../screens/HomeScreen';
-import ScheduleScreen from '../screens/ScheduleScreen';
+import HomeScreen from '../screens/homeScreen/HomeScreen';
+
+import ScheduleScreen from '../screens/ScheduleScreen/ScheduleScreen';
 import SettingScreen from '../screens/SettingScreen';
 import SubjectScreen from '../screens/SubjectScreen';
-import ConfigHeader from './configHeader';
+import ConfigHeader from './header/configHeader';
 const Tab = createMaterialBottomTabNavigator();
 
 
