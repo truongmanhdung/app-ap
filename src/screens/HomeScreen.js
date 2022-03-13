@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  TouchableOpacity
 } from 'react-native';
 import ConfigHeader from '../container/configHeader'
 import {useNavigation} from '@react-navigation/native';
@@ -49,17 +50,17 @@ function HomeScreen(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 1000);
-    // setTimeout(() => {
-    //   navigation.navigate('Login')
-    // }, 3000);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    setTimeout(() => {
+      navigation.navigate('FirstLogin');
+    }, 3000);
   }, []);
   return (
     <>
-    <ConfigHeader />
-    <ScrollView>
+    {/* <ConfigHeader /> */}
+    <View>
       <View style={styles.container}>
         {!loading && (
           <ActivityIndicator  size={100} color="#00ff00" />
@@ -85,7 +86,7 @@ function HomeScreen(props) {
           </View>
         )}
       </View>
-    </ScrollView>
+    </View>
     </>
     
   );

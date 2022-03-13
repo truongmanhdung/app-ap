@@ -2,7 +2,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import * as React from 'react';
 import IconView from '../common/IconView';
 import HomeScreen from '../screens/HomeScreen';
-import ScheduleScreen from '../screens/ScheduleScreen';
+import ScheduleScreen from '../screens/ScheduleScreen/ScheduleScreen';
 import SettingScreen from '../screens/SettingScreen';
 import SubjectScreen from '../screens/SubjectScreen';
 import ConfigHeader from './configHeader';
