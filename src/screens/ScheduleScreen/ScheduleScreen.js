@@ -13,6 +13,7 @@ import Tabview from '../../components/TabView/Tabview';
 import {FlatList} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import ConfigHeader from '../../container/header/configHeader';
 const newDate = new Date();
 const fakeData = [
   {
@@ -273,7 +274,7 @@ function ScheduleScreen() {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [api, setApi] = useState('');
- 
+
   useEffect(() => {
     const result = () => {
       fakeData.map(item => {
@@ -290,11 +291,20 @@ function ScheduleScreen() {
   };
 
   const navigate = () => {
-    navigation.navigate('viewContent');
+    navigation.navigate('viewContent', {
+      headerTitle: 'THÔNG BÁO NHẬN BẰNG TỐT NGHIỆP ĐỢT 3.2020',
+    });
   };
   const renderData = () => {
     const Item = ({title}) => (
-      <TouchableOpacity onPress={navigate} activeOpacity={0.8} style={styles.item}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('viewContent', {
+            headerTitle: 'THÔNG BÁO NHẬN BẰNG TỐT NGHIỆP ĐỢT 3.2020',
+          })
+        }
+        activeOpacity={0.8}
+        style={styles.item}>
         <View>
           <Text style={styles.title}>{title.title}</Text>
           <Text style={styles.text}>
@@ -328,25 +338,7 @@ function ScheduleScreen() {
 
   return (
     <>
-      <View style={styles.header}>
-        <Text>dasd</Text>
-        <View style={styles.iconHeader}>
-          <Icon.Button
-            style={styles.icon}
-            onPress={handleGo}
-            backgroundColor="none"
-            name="bells"
-            size={20}
-            color="white"
-          />
-          <Icon.Button
-            name="search1"
-            backgroundColor="none"
-            size={20}
-            color="white"
-          />
-        </View>
-      </View>
+      <ConfigHeader />
       <Tabview colums={colums} data={renderData} logic={logic} />
     </>
   );

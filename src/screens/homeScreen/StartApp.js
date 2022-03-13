@@ -9,7 +9,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native';
-import ConfigHeader from '../container/configHeader'
+import ConfigHeader from '../../container/header/configHeader'
 import {useNavigation} from '@react-navigation/native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
 });
-function HomeScreen(props) {
+function StartApp(props) {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
 
@@ -59,7 +59,6 @@ function HomeScreen(props) {
   }, []);
   return (
     <>
-    {/* <ConfigHeader /> */}
     <View>
       <View style={styles.container}>
         {!loading && (
@@ -92,6 +91,6 @@ function HomeScreen(props) {
   );
 }
 
-HomeScreen.propTypes = {};
+StartApp.propTypes = {};
 
-export default HomeScreen;
+export default StartApp;
