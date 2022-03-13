@@ -18,8 +18,9 @@ const styles = StyleSheet.create({
   textHeader: {
     fontSize: 20,
     color: 'white',
-    paddingRight: 50
-  },
+    marginRight: 10,
+    flex: 1
+    },
   safe: {
       backgroundColor: '#F95B00'
   }
