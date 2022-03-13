@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import ConfigHeader from '../container/configHeader'
 import {useNavigation} from '@react-navigation/native';
+import IconView from '../common/IconView';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
     height: windowHeight,
@@ -64,8 +66,10 @@ function HomeScreen(props) {
         {!loading && (
           <ActivityIndicator  size={100} color="#00ff00" />
         )}
+        
         {loading && (
           <View>
+           
             <View style={styles.viewLogo}>
               <Image
                 style={styles.logo}

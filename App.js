@@ -15,9 +15,12 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 import persistor, {store} from './src/app/store';
 import NavBottom from './src/container/navBottom';
+import FeeScreen from './src/screens/FeeScreen';
 import HomeScreen from './src/screens/HomeScreen';
 
 import LoginScreen from './src/screens/LoginScreen';
+import SmsScreen from './src/screens/SmsScreen';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -44,6 +47,17 @@ const App = () => {
                 name="Login"
                 component={LoginScreen}
               />
+               <Stack.Screen
+                options={{headerShown: false}}
+                name="Fee"
+                component={FeeScreen}
+              />
+                <Stack.Screen
+                options={{headerShown: false}}
+                name="Sms"
+                component={SmsScreen}
+              />
+              
             </Stack.Navigator>
           </NavigationContainer>
         </View>
