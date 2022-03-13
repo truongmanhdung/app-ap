@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, SafeAreaView} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
   },
+  safe: {
+      backgroundColor: '#F95B00'
+  }
 });
 function ConfigHeader(props) {
   const navigation = useNavigation();
@@ -42,6 +45,8 @@ function ConfigHeader(props) {
   const {users} = useSelector(state => state.auths);
   console.log(users);
   return (
+    <SafeAreaView style={styles.safe} >
+
     <View style={styles.header}>
       <View style={styles.image}>
         <Avatar width={40} height={40} uri={users.picture} />
@@ -71,6 +76,7 @@ function ConfigHeader(props) {
         </TouchableOpacity>
       </View>
     </View>
+    </SafeAreaView>
   );
 }
 
