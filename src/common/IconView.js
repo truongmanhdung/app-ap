@@ -33,8 +33,6 @@ function IconView(props) {
       html = <FontAwesome name={name} size={size} color={colorConfig} />;
     } else if (component === NameIconComponents.FontAwesome5) {
       html = <FontAwesome5 name={name} size={size} color={colorConfig} />;
-    } else if (component === NameIconComponents.FontAwesome5Brands) {
-      html = <FontAwesome5Brands name={name} size={size} color={colorConfig} />;
     } else if (component === NameIconComponents.Fontisto) {
       html = <Fontisto name={name} size={size} color={colorConfig} />;
     } else if (component === NameIconComponents.Foundation) {

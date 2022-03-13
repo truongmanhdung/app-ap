@@ -13,12 +13,14 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import persistor, {store} from './src/app/store';
 import NavBottom from './src/container/navBottom';
+import FeeScreen from './src/screens/FeeScreen';
+import SmsScreen from './src/screens/SmsScreen';
 import FirstLoginScreen from './src/screens/authScreen/firstLoginScreen';
 import LoginScreen from './src/screens/authScreen/loginScreen';
 import StartApp from './src/screens/homeScreen/StartApp';
 import Notification from './src/screens/Notification';
 import ViewContent from './src/screens/ScheduleScreen/ViewContent';
-
+import RewardScreen from './src/screens/RewardScreen';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -50,6 +52,23 @@ const App = () => {
                 name="Login"
                 component={LoginScreen}
               />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="Fee"
+                component={FeeScreen}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="Reward"
+                component={RewardScreen}
+              />
+
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="Sms"
+                component={SmsScreen}
+              />
+
               <Stack.Screen
                 options={{headerShown: false}}
                 name="FirstLogin"

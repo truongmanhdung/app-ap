@@ -34,7 +34,7 @@ function Tabview({ colums, logic, data }) {
                     />
                 ))}
             </Tab>
-            <ScrollView>
+            <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps="always">
                 <TabView value={index} onChange={setIndex} animationType="spring">
                     {colums.map((item, i) => (
                         <TabView.Item key={i} >
