@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, StatusBar, FlatList, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
+import TopBar from '../container/header/TopBar';
 const Notification = () => {
     const navigation = useNavigation()
     const handleBack = () => (navigation.goBack())
@@ -52,16 +53,7 @@ const Notification = () => {
 
     return (
         <>
-            <View style={styles.header} >
-                <View style={styles.titleHeader} >
-                    <Icon.Button onPress={handleBack} style={styles.icon} backgroundColor='none' name='left' size={25} />
-                    <View>
-                        <Text style={styles.textTitle} >
-                            THÔNG BÁO
-                        </Text>
-                    </View>
-                </View>
-            </View>
+            <TopBar />
             <View  >
                 <ScrollView>
                     {renderData()}

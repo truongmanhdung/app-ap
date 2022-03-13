@@ -9,8 +9,15 @@ import {
 import React, {useState} from 'react';
 import Carousel from 'react-native-snap-carousel';
 import googleIcon from '../../assets/google-plus.png';
+import auth from '@react-native-firebase/auth';
 import {Pagination} from 'react-native-snap-carousel';
-
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../features/auth/authSlide';
+GoogleSignin.configure({
+  webClientId:
+    '509124465129-jaeu547qhg4mrbjfaoadrajrcthukhj0.apps.googleusercontent.com',
+});
 const WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = WIDTH * 0.88;
 
@@ -31,6 +38,15 @@ const carouselItems = [
 
 const FirstLoginScreen = ({navigation}) => {
   const [activeSlide, setActiveSlide] = useState(0);
+
+  const dispatch =  useDispatch();
+
+  const {users} = useSelector((state) => state.auths);
+
+  if(users.name){
+    navigation.navigate("Home")
+  }
+
   const carouselCardItem = ({item, index}) => {
     return (
       <View style={styles.cardCarousel} key={index}>
@@ -38,6 +54,25 @@ const FirstLoginScreen = ({navigation}) => {
       </View>
     );
   };
+
+  const onGoogleButtonPress = async () => {
+    // Get the users ID token
+    const {idToken} = await GoogleSignin.signIn();
+    console.log('token', idToken);
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    const user_login = auth().signInWithCredential(googleCredential);
+    user_login.then((user) => {
+      if(user){
+        // console.log(user.additionalUserInfo.profile);
+        dispatch(login(user.additionalUserInfo.profile))
+        navigation.navigate("Home")
+      }
+    }).catch(err => console.log(err));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.slider_container}>
@@ -74,7 +109,13 @@ const FirstLoginScreen = ({navigation}) => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button_second}>
+        <TouchableOpacity
+          style={styles.button_second}
+          onPress={() =>
+            onGoogleButtonPress().then(() =>
+              console.log('Signed in with Google!'),
+            )
+          }>
           <Image style={styles.googleIcon} source={googleIcon} />
           <Text style={styles.buttonText}>Đăng nhập bằng tài khoản google</Text>
         </TouchableOpacity>
@@ -199,7 +240,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: '40',
+    fontWeight: '300',
     color: '#333',
   },
   bottomContainer: {
