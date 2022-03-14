@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import TopBar from '../container/header/TopBar';
 const Notification = () => {
     const navigation = useNavigation()
-    const handleBack = () => (navigation.goBack())
     const fakeData = [
         {
             title: 'Lịch học ngày 20/11/2020',
@@ -40,13 +39,12 @@ const Notification = () => {
                 </View>
             </TouchableOpacity>
         );
-        const renderItem = ({ item }) => (<Item item={item} />)
+
         return (
             <SafeAreaView style={styles.container} >
-                <FlatList
-                    data={fakeData}
-                    renderItem={renderItem}
-                />
+                {fakeData.map((item, index)=>(
+                    <Item key={index} item={item} />
+                ))}
             </SafeAreaView>
         )
     }

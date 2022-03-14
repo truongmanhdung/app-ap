@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState} from 'react';
 import Carousel from 'react-native-snap-carousel';
@@ -74,6 +75,7 @@ const FirstLoginScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <SafeAreaView>
       <View style={styles.slider_container}>
         <Carousel
           data={carouselItems}
@@ -84,6 +86,7 @@ const FirstLoginScreen = ({navigation}) => {
           onSnapToItem={index => setActiveSlide(index)}
         />
       </View>
+      </SafeAreaView>
       <Pagination
         dotsLength={carouselItems.length}
         activeDotIndex={activeSlide}

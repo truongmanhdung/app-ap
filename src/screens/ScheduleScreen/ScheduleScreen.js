@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
@@ -6,11 +6,11 @@ import {
   SafeAreaView,
   StatusBar,
   TouchableOpacity,
+  VirtualizedList,
 } from 'react-native';
-import {Text} from 'react-native-elements';
+import { Text } from 'react-native-elements';
 import Tabview from '../../components/TabView/Tabview';
-import {FlatList} from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import ConfigHeader from '../../container/header/configHeader';
 const newDate = new Date();
 const fakeData = [
@@ -245,7 +245,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    width: '60%',
   },
   text: {
     color: '#888',
@@ -294,36 +293,29 @@ function ScheduleScreen() {
     });
   };
   const renderData = () => {
-    const Item = ({title}) => (
-      <TouchableOpacity
-        onPress={() => navigate() }
-        activeOpacity={0.8}
-        style={styles.item}>
-        <View>
-          <Text style={styles.title}>{title.title}</Text>
-          <Text style={styles.text}>
-            {title.authorTitle}: {title.author}{' '}
-          </Text>
-          <Text style={styles.text}>
-            {title.timeTitle}: {title.time}{' '}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    );
-    const renderItem = ({item}) => {
-      return (
-        <View>
-          <Item title={item} />
-        </View>
-      );
-    };
     return (
       <SafeAreaView style={styles.container}>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-        />
+        {
+          data.map((item, index) => (
+            <View key={index} >
+              <TouchableOpacity
+                onPress={() => navigate()}
+                activeOpacity={0.8}
+                style={styles.item}>
+                <View>
+                  <Text style={styles.title}>{item.title}</Text>
+                  <Text style={styles.text}>
+                    {item.authorTitle}: {item.author}{' '}
+                  </Text>
+                  <Text style={styles.text}>
+                    {item.timeTitle}: {item.time}{' '}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ))
+        }
+
       </SafeAreaView>
     );
   };
