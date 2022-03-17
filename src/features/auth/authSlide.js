@@ -26,6 +26,9 @@ export const authSlice = createSlice({
             // console.log("action.payload",action.payload);
             state.users = action.payload
         },
+        logout: (state, action) => {
+            state.users = []
+        }
     },
     extraReducers: (builder) => {
         // trường hợp 1: gọi đến action fetchProduct và thành công
@@ -50,5 +53,5 @@ export const authSlice = createSlice({
 
 
 // Action creators are generated for each case reducer function
-export const { login } = authSlice.actions
+export const { login, logout } = authSlice.actions
 export default authSlice.reducer

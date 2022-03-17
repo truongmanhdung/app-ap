@@ -58,7 +58,7 @@ function HomeScreen(props) {
 
   return (
     <>
-    {/* <ConfigHeader /> */}
+    <ConfigHeader />
     <View>
       <View style={styles.container}>
         {!loading && (

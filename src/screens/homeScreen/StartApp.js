@@ -56,7 +56,7 @@ function StartApp(props) {
     setTimeout(() => {
       navigation.navigate('FirstLogin');
     }, 3000);
-  }, []);
+  }, [navigation]);
   return (
     <>
     <View>

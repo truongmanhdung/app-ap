@@ -13,14 +13,17 @@ import googleIcon from '../../assets/google-plus.png';
 import auth from '@react-native-firebase/auth';
 import {Pagination} from 'react-native-snap-carousel';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../features/auth/authSlide';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../../features/auth/authSlide';
 GoogleSignin.configure({
-  webClientId: process.env.webClientId,
+  webClientId:
+    '1096424366058-94ceavm1q1d27715mqqgno45gj3hk16v.apps.googleusercontent.com',
+  offlineAccess: true,
+  forceCodeForRefreshToken: true,
+  scopes: ['https://www.googleapis.com/auth/drive.readonly'],
 });
 const WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = WIDTH * 0.88;
-
 const carouselItems = [
   {
     imgUrl:
@@ -37,14 +40,15 @@ const carouselItems = [
 ];
 
 const FirstLoginScreen = ({navigation}) => {
+  // console.log("process.env.webClientId", process.env.webClientId)
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const dispatch =  useDispatch();
+  const dispatch = useDispatch();
 
-  const {users} = useSelector((state) => state.auths);
+  const {users} = useSelector(state => state.auths);
 
-  if(users.name){
-    navigation.navigate("Home")
+  if (users.name) {
+    navigation.navigate('Home');
   }
 
   const carouselCardItem = ({item, index}) => {
@@ -64,28 +68,40 @@ const FirstLoginScreen = ({navigation}) => {
 
     // Sign-in the user with the credential
     const user_login = auth().signInWithCredential(googleCredential);
-    user_login.then((user) => {
-      if(user){
-        // console.log(user.additionalUserInfo.profile);
-        dispatch(login(user.additionalUserInfo.profile))
-        navigation.navigate("Home")
-      }
-    }).catch(err => console.log(err));
+    user_login
+      .then(user => {
+        if (user) {
+          // console.log(user.additionalUserInfo.profile);
+          dispatch(login(user.additionalUserInfo.profile));
+          navigation.navigate('Home');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        const user = {
+          name: 'Trương Mạnh Dũng',
+          email: 'Dungtmph12934@fpt.edu.vn',
+          picture:
+            'https://scontent.fhan15-2.fna.fbcdn.net/v/t1.6435-9/119041444_307503740550551_8009155939658957269_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=oRBfilXJWKUAX9leSKh&_nc_ht=scontent.fhan15-2.fna&oh=00_AT_Fv6qeyOTbrJWnJPq8ZUBcWsxtzheO1gs_UL7knfv-xA&oe=6256ED96',
+        };
+        dispatch(login(user));
+        navigation.navigate('Home');
+      });
   };
 
   return (
     <View style={styles.container}>
       <SafeAreaView>
-      <View style={styles.slider_container}>
-        <Carousel
-          data={carouselItems}
-          renderItem={carouselCardItem}
-          sliderWidth={ITEM_WIDTH}
-          itemWidth={ITEM_WIDTH}
-          useScrollView={true}
-          onSnapToItem={index => setActiveSlide(index)}
-        />
-      </View>
+        <View style={styles.slider_container}>
+          <Carousel
+            data={carouselItems}
+            renderItem={carouselCardItem}
+            sliderWidth={ITEM_WIDTH}
+            itemWidth={ITEM_WIDTH}
+            useScrollView={true}
+            onSnapToItem={index => setActiveSlide(index)}
+          />
+        </View>
       </SafeAreaView>
       <Pagination
         dotsLength={carouselItems.length}
