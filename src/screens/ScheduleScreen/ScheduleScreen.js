@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
@@ -6,192 +6,17 @@ import {
   SafeAreaView,
   StatusBar,
   TouchableOpacity,
-  VirtualizedList,
 } from 'react-native';
-import { Text } from 'react-native-elements';
-import Tabview from '../../components/TabView/Tabview';
-import { useNavigation } from '@react-navigation/native';
+import {Text} from 'react-native-elements';
+import {useNavigation} from '@react-navigation/native';
 import ConfigHeader from '../../container/header/configHeader';
-const newDate = new Date();
-const fakeData = [
-  {
-    keyIndex: 'study',
-    data: [
-      {
-        id: 1,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 2,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 3,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 4,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 5,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 6,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 7,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-    ],
-  },
-  {
-    keyIndex: 'action',
-    data: [
-      {
-        id: 1,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 2,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 3,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 4,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 5,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 6,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 7,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-    ],
-  },
-  {
-    keyIndex: 'hoc',
-    data: [
-      {
-        id: 1,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 2,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 3,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-      {
-        id: 4,
-        title:
-          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
-        author: 'huongnt166',
-        authorTitle: 'Tác giả',
-        time: newDate.getDate() + ' @ ' + newDate.getTime(),
-        timeTitle: 'Thời gian',
-      },
-    ],
-  },
-];
+import ScrollableTabView, {
+  ScrollableTabBar,
+} from 'react-native-scrollable-tab-view';
+import {ScrollView} from 'react-native-gesture-handler';
+import {useDispatch, useSelector} from 'react-redux';
+import {onSetSchedule} from '../../features/scheduleSlide/scheduleSlide';
+
 const colums = [
   {
     id: 0,
@@ -210,6 +35,34 @@ const colums = [
       color: 'red',
     },
     keyIndex: 'actions',
+  },
+  {
+    id: 2,
+    title: 'Học phí',
+    titleStyle: {
+      fontSize: 12,
+      color: 'red',
+    },
+    keyIndex: 'hoc',
+  },
+  ,
+  {
+    id: 2,
+    title: 'Học phí',
+    titleStyle: {
+      fontSize: 12,
+      color: 'red',
+    },
+    keyIndex: 'hoc',
+  },
+  {
+    id: 2,
+    title: 'Học phí',
+    titleStyle: {
+      fontSize: 12,
+      color: 'red',
+    },
+    keyIndex: 'hoc',
   },
   {
     id: 2,
@@ -269,60 +122,71 @@ const styles = StyleSheet.create({
 });
 function ScheduleScreen() {
   const navigation = useNavigation();
-  const [data, setData] = useState([]);
-  const [api, setApi] = useState('');
-
-  useEffect(() => {
-    const result = () => {
-      fakeData.map(item => {
-        if (api === item.keyIndex) {
-          setData(item.data);
-        }
-      });
-    };
-    result();
-  }, [api]);
-
-  const logic = key => {
-    setApi(key);
-  };
-
+  const dispatch = useDispatch();
+  const {schedules} = useSelector(state => state.schedules);
   const navigate = () => {
     navigation.navigate('viewContent', {
       headerTitle: 'THÔNG BÁO NHẬN BẰNG TỐT NGHIỆP ĐỢT 3.2020',
     });
   };
+
+  const setOptionSchedule = keyIndex => {
+    dispatch(onSetSchedule(keyIndex.ref.props));
+  };
+
   const renderData = () => {
     return (
       <SafeAreaView style={styles.container}>
-        {
-          data.map((item, index) => (
-            <View key={index} >
-              <TouchableOpacity
-                onPress={() => navigate()}
-                activeOpacity={0.8}
-                style={styles.item}>
-                <View>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.text}>
-                    {item.authorTitle}: {item.author}{' '}
-                  </Text>
-                  <Text style={styles.text}>
-                    {item.timeTitle}: {item.time}{' '}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          ))
-        }
-
+        {schedules.map((item, index) => (
+          <View key={index}>
+            <TouchableOpacity
+              onPress={() => navigate()}
+              activeOpacity={0.8}
+              style={styles.item}>
+              <View>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.text}>
+                  {item.authorTitle}: {item.author}{' '}
+                </Text>
+                <Text style={styles.text}>
+                  {item.timeTitle}: {item.time}{' '}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        ))}
       </SafeAreaView>
     );
   };
+
   return (
     <>
       <ConfigHeader />
-      <Tabview colums={colums} data={renderData} logic={logic} />
+      <ScrollableTabView
+        renderTabBar={tabBarProps => {
+          return <ScrollableTabBar />;
+        }}
+        tabBarPosition="top"
+        onChangeTab={e => {
+          setOptionSchedule(e);
+        }}
+        initialPage={0}
+        tabBarUnderlineStyle={{
+          backgroundColor: 'red',
+          height: 1,
+        }}
+        tabBarBackgroundColor={'white'}
+        tabBarActiveTextColor={'red'}
+        tabBarTextStyle={{fontSize: 14}}
+
+        // scrollWithoutAnimation={true}
+      >
+        {colums.map((item, index) => (
+          <View key={index} tabLabel={item.title}>
+            <ScrollView>{renderData()}</ScrollView>
+          </View>
+        ))}
+      </ScrollableTabView>
     </>
   );
 }
