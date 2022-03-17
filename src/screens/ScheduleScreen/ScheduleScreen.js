@@ -6,12 +6,12 @@ import {
   SafeAreaView,
   StatusBar,
   TouchableOpacity,
-  VirtualizedList,
 } from 'react-native';
 import { Text } from 'react-native-elements';
-import Tabview from '../../components/TabView/Tabview';
 import { useNavigation } from '@react-navigation/native';
 import ConfigHeader from '../../container/header/configHeader';
+import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view'
+import { ScrollView } from 'react-native-gesture-handler';
 const newDate = new Date();
 const fakeData = [
   {
@@ -191,6 +191,39 @@ const fakeData = [
       },
     ],
   },
+  {
+    keyIndex: 'hoc',
+    data: [
+      {
+        id: 1,
+        title:
+          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
+        author: 'huongnt166',
+        authorTitle: 'Tác giả',
+        time: newDate.getDate() + ' @ ' + newDate.getTime(),
+        timeTitle: 'Thời gian',
+      },
+      {
+        id: 2,
+        title:
+          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
+        author: 'huongnt166',
+        authorTitle: 'Tác giả',
+        time: newDate.getDate() + ' @ ' + newDate.getTime(),
+        timeTitle: 'Thời gian',
+      },
+      {
+        id: 3,
+        title:
+          'Thông báo v/v đăng ký học lại ngành công nghệ thông tin tại block 2 kỳ Fall 2020',
+        author: 'huongnt166',
+        authorTitle: 'Tác giả',
+        time: newDate.getDate() + ' @ ' + newDate.getTime(),
+        timeTitle: 'Thời gian',
+      },
+
+    ],
+  },
 ];
 const colums = [
   {
@@ -210,6 +243,34 @@ const colums = [
       color: 'red',
     },
     keyIndex: 'actions',
+  },
+  {
+    id: 2,
+    title: 'Học phí',
+    titleStyle: {
+      fontSize: 12,
+      color: 'red',
+    },
+    keyIndex: 'hoc',
+  },
+  ,
+  {
+    id: 2,
+    title: 'Học phí',
+    titleStyle: {
+      fontSize: 12,
+      color: 'red',
+    },
+    keyIndex: 'hoc',
+  },
+  {
+    id: 2,
+    title: 'Học phí',
+    titleStyle: {
+      fontSize: 12,
+      color: 'red',
+    },
+    keyIndex: 'hoc',
   },
   {
     id: 2,
@@ -270,23 +331,17 @@ const styles = StyleSheet.create({
 function ScheduleScreen() {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-  const [api, setApi] = useState('');
-
+  const [scrollText, setScrollText] = useState(0)
   useEffect(() => {
     const result = () => {
-      fakeData.map(item => {
-        if (api === item.keyIndex) {
+      fakeData.map((item, index) => {
+        if (scrollText === index) {
           setData(item.data);
         }
       });
     };
     result();
-  }, [api]);
-
-  const logic = key => {
-    setApi(key);
-  };
-
+  }, [scrollText]);
   const navigate = () => {
     navigation.navigate('viewContent', {
       headerTitle: 'THÔNG BÁO NHẬN BẰNG TỐT NGHIỆP ĐỢT 3.2020',
@@ -319,10 +374,40 @@ function ScheduleScreen() {
       </SafeAreaView>
     );
   };
+
   return (
     <>
       <ConfigHeader />
-      <Tabview colums={colums} data={renderData} logic={logic} />
+      <ScrollableTabView
+        renderTabBar={(tabBarProps) => {
+          return (<ScrollableTabBar />)
+        }}
+        tabBarPosition="top"
+        onChangeTab={(e) => {
+          setScrollText(e.i)
+        }}
+        initialPage={0}
+        tabBarUnderlineStyle={{
+          backgroundColor: 'red',
+          height: 1
+        }}
+        tabBarBackgroundColor={'white'}
+        tabBarActiveTextColor={'red'}
+        tabBarTextStyle={{ fontSize: 14 }}
+
+      // scrollWithoutAnimation={true}
+      >
+        {
+          colums.map((item, index) => (
+            <View key={index} tabLabel={item.title}>
+              <ScrollView>
+              {renderData()}
+              </ScrollView>
+            </View>
+
+          ))
+        }
+      </ScrollableTabView>
     </>
   );
 }
